@@ -1,4 +1,6 @@
 #!/system/bin/sh
+# Edition by Muhammad Rizki (RiProG-id @ GitHub)
+# Thanks to tytydraco @ GitHub
 # Game Optimization Daemon™ by pedro (pedrozzz0 @ GitHub)
 # Thanks to tytydraco @ GitHub
 # If you wanna use it as part of your project, please maintain the credits to it respective's author(s).
@@ -7,11 +9,11 @@
 [[ "$1" == "--debug" ]] || [[ "$1" == "-d" ]] && set -x
 
 # Paths
-modpath="/data/adb/modules/god"
-glog="/data/media/0/ktsr/game_opt.log"
-bbn_log="/data/media/0/ktsr/bourbon.log"
-gpu_tune_enable="/data/media/0/ktsr/enable_gpu_tune"
-gpu_tune="/data/media/0/ktsr/gpu_tune"
+moduledir="/data/adb/modules/gameoptd"
+glog="$moduledir/log/game_opt.log"
+bbn_log="$moduledir/log/bourbon.log"
+gpu_tune_enable="$moduledir/toggle/enable_gpu_tune"
+gpu_tune="$moduledir/log/gpu_tune.log"
 
 [[ "$(cat "$gpu_tune_enable")" == "1" ]] && enable_gpu_tune=1 || enable_gpu_tune=0
 
@@ -36,9 +38,9 @@ ps_ret_filter_2="awk !/com.tencent.soter.soterserver/"
 line_row_filter="tail -1"
 package_filter="cut -f 2 -d ":""
 
-notif_start() { su -lp 2000 -c "cmd notification post -S bigtext -t 'GOD is executing' tag 'Optimizing $game threads...'" >/dev/null 2>&1; }
+notif_start() { su -lp 2000 -c "cmd notification post -S bigtext -t 'Game Optimization Daemon' tag 'Optimizing $game threads...'" >/dev/null 2>&1; }
 
-notif_end() { su -lp 2000 -c "cmd notification post -S bigtext -t 'GOD is executing' tag 'Optimization done!'" >/dev/null 2>&1; }
+notif_end() { su -lp 2000 -c "cmd notification post -S bigtext -t 'Game Optimization Daemon' tag 'Optimization done!'" >/dev/null 2>&1; }
 
 log_g() { echo "[$(date +%T)]: [*] $1" >>"$glog"; }
 
