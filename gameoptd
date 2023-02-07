@@ -12,11 +12,12 @@
 moduledir="/data/adb/modules/gameoptd"
 glog="$moduledir/log/game_opt.log"
 bbn_log="$moduledir/log/bourbon.log"
-gpu_tune_enable="$moduledir/toggle/enable_gpu_tune"
+gpu_tune_enable="$moduledir/toggler/enable_gpu_tune"
 gpu_tune="$moduledir/log/gpu_tune.log"
+notification_enable="$moduledir/toggler/enable_notification"
 
 [[ "$(cat "$gpu_tune_enable")" == "1" ]] && enable_gpu_tune=1 || enable_gpu_tune=0
-
+[[ "$(cat "$notification_enable")" == "1" ]] && notification_enable=1 || notification_enable=0
 # Tasks
 uni_task="UnityMain|UnityGfxDeviceW|Apollo-Source|Apollo-File"
 uni_coop_task="UnityPreload|ace_worker|NativeThread|Thread-|UnityMultiRende|AsyncReadManage|UnityChoreograp|Worker Thread|CoreThread"
@@ -38,9 +39,9 @@ ps_ret_filter_2="awk !/com.tencent.soter.soterserver/"
 line_row_filter="tail -1"
 package_filter="cut -f 2 -d ":""
 
-notif_start() { su -lp 2000 -c "cmd notification post -S bigtext -t 'Game Optimization Daemon' tag 'Optimizing $game threads...'" >/dev/null 2>&1; }
+notif_start() { su -lp 2000 -c "cmd notification post -S bigtext -t 'Game Optimization Daemon' tag 'Optimizing $game'" >/dev/null 2>&1; }
 
-notif_end() { su -lp 2000 -c "cmd notification post -S bigtext -t 'Game Optimization Daemon' tag 'Optimization done!'" >/dev/null 2>&1; }
+notif_end() { su -lp 2000 -c "cmd notification post -S bigtext -t 'Game Optimization Daemon' tag 'Optimization done'" >/dev/null 2>&1; }
 
 log_g() { echo "[$(date +%T)]: [*] $1" >>"$glog"; }
 
@@ -489,7 +490,7 @@ gpu_tune_default() {
 }
 
 log_i "[*] Game Optimization Daemon - Improving your gaming experience™
-Version: 1.1.0-r2
+Version: RiProG Edition 1.0 Beta
 
 [$(date +%T)]: [*] Game Optimization Logging started
 
@@ -509,17 +510,15 @@ then
  {
 			log_g "$game found, optimizing..."
 			echo "" >>"$glog"
-			notif_start
+			[[ "$notification_enable" == "1" ]] && notif_start
 			gameopt_apply
 			[[ "$enable_gpu_tune" == "1" ]] && gpu_tune_apply
 			log_g "Optimization done"
 			echo "" >>"$glog"
-			notif_end
+			[[ "$notification_enable" == "1" ]] && notif_end
 		} || continue
-echo then
 else
 [[ "$(cat "$gpu_tune")" == "1" ]] && gpu_tune_default
-echo else	
 fi
       done
 ) &

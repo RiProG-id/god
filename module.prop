@@ -1,7 +1,6 @@
 id=gameoptd
-name=Game Optimisation Daemon RiProG Edition
-version=1.7 Stable
-versionCode=17
+name=Game Optimization Daemon RiProG Edition
+version=1.0
+versionCode=10
 author=RiProG
-description=Improve the android experience with some tweaks combined | Automaticaly adapt mode
-updateJson=https://raw.githubusercontent.com/RiProG-id/RiProG-AI/main/update.json
+description=A task optimizer which focus on improving gaming exprience. | Based from: gameoptd by @pedro3z0
