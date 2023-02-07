@@ -4,6 +4,8 @@ mkdir $moduledir/system
 mkdir $moduledir/system/bin
 mv $moduledir/gameoptd  $moduledir/system/bin
 chmod 755 $moduledir/system/bin/gameoptd
+mv $moduledir/gmenu  $moduledir/system/bin
+chmod 755 $moduledir/system/bin/gmenu
 )
 [[ ! -d $moduledir/toggler ]] && (
 mkdir $moduledir/toggler

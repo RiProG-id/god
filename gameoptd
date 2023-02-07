@@ -490,7 +490,7 @@ gpu_tune_default() {
 }
 
 log_i "[*] Game Optimization Daemon - Improving your gaming experience™
-Version: RiProG Edition 1.0 Beta
+Version: RiProG Edition 1.1
 
 [$(date +%T)]: [*] Game Optimization Logging started
 

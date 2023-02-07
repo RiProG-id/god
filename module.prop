@@ -1,6 +1,7 @@
 id=gameoptd
 name=Game Optimization Daemon RiProG Edition
-version=1.0
-versionCode=10
+version=1.1
+versionCode=11
 author=RiProG
 description=A task optimizer which focus on improving gaming exprience. | Based from: gameoptd by @pedro3z0
+updateJson=https://github.com/RiProG-id/god/raw/RiProG-Edition/update.json
